@@ -20,14 +20,14 @@
 // });
 
 // import Modal from "react-native-modal";
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "native-base";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { onValue, ref, set } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import {
   Button,
   FlatList,
   Pressable,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -46,6 +46,13 @@ import { AddItem } from "./components/AddItem";
 import { db } from "./init-firebase";
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  text: {
+    fontSize: 25,
+    fontWeight: "500",
+  },
   mainView: {
     backgroundColor: "#fff",
     flex: 1,
@@ -142,21 +149,24 @@ export default function App() {
     priority: "mid",
   });
   return (
-    <View style={styles.mainView}>
-      {/*  */}
-      {/*  */}
-      {/* DESEOS/NECESIDADES */}
-      <Box mainLists={mainLists} />
-      {/* creacion de listas */}
-      <ListForm
-        titleOfList={titleOfList}
-        setTitleOfList={setTitleOfList}
-        createNewList={createNewList}
-      />
-      {/* listado de listas */}
-      <AllLists mainLists={mainLists} addItemToList={addItemToList} />
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar barStyle={"dark-content"} />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.mainView}>
+          {/* DESEOS/NECESIDADES */}
+          <Box mainLists={mainLists} />
+          {/* creacion de listas */}
+          <ListForm
+            titleOfList={titleOfList}
+            setTitleOfList={setTitleOfList}
+            createNewList={createNewList}
+          />
+          {/* listado de listas */}
+          <AllLists mainLists={mainLists} addItemToList={addItemToList} />
+          <StatusBar style="auto" />
+        </View>
+      </SafeAreaView>
+    </>
   );
 }
 const Box = ({ mainLists }) => {
