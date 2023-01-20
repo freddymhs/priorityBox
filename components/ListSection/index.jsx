@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { onValue, ref } from "@firebase/database";
+import { useEffect, useState } from "react";
 import {
   Button,
   FlatList,
@@ -9,14 +10,31 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { AddItem } from "../AddItem";
+import { db } from "../../init-firebase";
+import { AddItem } from "../Home/AddItem";
 
-export const ListSection = ({ mainLists }) => {
-  // const [modalVisible, setModalVisible] = useState(false);
-  const [newItem, setNewItem] = useState({
-    name: "comprar regalos",
-    priority: "mid",
-  });
+
+
+export default ListSection = () => {
+  const [mainLists, setMainLists] = useState({});
+  const refRealTimeDatabase = ref(db, "/listas");
+  useEffect(() => {
+    function getDataFromFirebase() {
+      try {
+        onValue(refRealTimeDatabase, (snapshot) => {
+          const data = snapshot.val();
+          setMainLists(data);
+        });
+      } catch (err) {
+        console.log("no pude obtener la data desde firebase realtime");
+      }
+    }
+
+    getDataFromFirebase();
+  }, []);
+
+
+
   const titlesInList = Object.keys(mainLists);
 
   const List = titlesInList.map((t) => {

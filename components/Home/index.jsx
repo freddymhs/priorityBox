@@ -8,9 +8,10 @@ import {
 } from "react-native";
 
 import { db } from "../../init-firebase";
-import { AddList } from "../AddList";
-import { ListSection } from "../ListSection/index";
+
+
 import { BoxSection } from "../BoxSection/index";
+import { AddItem } from "./AddItem";
 
 
 const styles = StyleSheet.create({
@@ -117,13 +118,14 @@ export default function Home() {
         {/* DESEOS/NECESIDADES */}
         <BoxSection mainLists={mainLists} />
         {/* creacion de listas */}
-        <AddList
+        {/* <AddList
           titleOfList={titleOfList}
           setTitleOfList={setTitleOfList}
           createNewList={createNewList}
-        />
+        /> */}
+        <AddItem />
         {/* listado de listas */}
-        <ListSection mainLists={mainLists} addItemToList={addItemToList} />
+        {/* <ListSection mainLists={mainLists} addItemToList={addItemToList} /> */}
       </View>
       {/* </SafeAreaView> */}
     </>

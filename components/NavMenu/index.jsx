@@ -3,6 +3,8 @@ import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from '../Home/index';
+import ListSection from '../ListSection/index';
+import { NativeBaseProvider } from 'native-base';
 
 function HomeScreen({ navigation }) {
   return (
@@ -28,10 +30,12 @@ const Drawer = createDrawerNavigator();
 export function NavMenu() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      </Drawer.Navigator>
+      <NativeBaseProvider>
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="ListSection" component={ListSection} />
+        </Drawer.Navigator>
+      </NativeBaseProvider>
     </NavigationContainer>
   );
 }
