@@ -1,3 +1,21 @@
 # creacion de app
 npx create-expo-app my-app 
 
+#actualiza cli 
+npm install -g expo-cli o npx expo install --fix 
+
+#revisar packages 
+npx expo install --check
+
+
+
+
+
+
+
+
+
+
+# npm
+npm i firebase
+npm i @firebase/database
