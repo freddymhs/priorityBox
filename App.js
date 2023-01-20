@@ -21,6 +21,7 @@
 
 // import Modal from "react-native-modal";
 import { StatusBar } from "native-base";
+
 import { StyleSheet, SafeAreaView } from "react-native";
 import { onValue, ref, set } from "firebase/database";
 import React, { useEffect, useState } from "react";
@@ -47,6 +48,7 @@ import { db } from "./init-firebase";
 import { AddList } from "./components/AddList";
 import { ListSection } from "./components/ListSection";
 import { BoxSection } from "./components/BoxSection";
+import { NavMenu } from "./components/NavMenu";
 
 const styles = StyleSheet.create({
   container: {
@@ -147,6 +149,7 @@ export default function App() {
 
   return (
     <>
+      <NavMenu />
       <StatusBar barStyle={"dark-content"} />
       <SafeAreaView style={styles.container}>
         <View style={styles.mainView}>
