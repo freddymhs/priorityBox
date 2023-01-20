@@ -10,6 +10,9 @@ npx expo install --check
 
 
 
+#llimpia cache
+npx expo start --clear
+
 
 
 
@@ -19,3 +22,11 @@ npx expo install --check
 # npm
 npm i firebase
 npm i @firebase/database
+
+#side menu
+npm install @react-navigation/drawer
+npx expo install react-native-gesture-handler 
+npx expo install react-native-reanimated   + npx expo start --clear -> expo start -c
+
+#safe area
+react-native-safe-area-context
