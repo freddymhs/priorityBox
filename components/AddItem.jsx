@@ -18,7 +18,6 @@ export const AddItem = ({ title, mainLists }) => {
   const addItemInList = () => {
     const newPosition = mainLists[title]?.items?.length || 0;
     set(ref(db, `/listas/${title}/items/${newPosition}`), text);
-
   }
 
   return (
