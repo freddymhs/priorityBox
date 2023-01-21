@@ -1,10 +1,10 @@
 import { onValue, ref, set } from 'firebase/database';
-import { Box, Button, Center, CheckIcon, HStack, Input, Modal, Select, VStack } from 'native-base';
+import { Box, Button, Center, CheckIcon, CloseIcon, HStack, IconButton, Input, Modal, Select, VStack } from 'native-base';
 import React, { useState, useEffect } from 'react';
-import { Alert, StyleSheet, Text, Pressable, View, TextInput } from 'react-native';
+import { StyleSheet, Text, Pressable, View, TextInput } from 'react-native';
 import { db } from '../../init-firebase';
-
-
+import { Alert } from "native-base";
+import { useToast } from 'native-base';
 export const AddItem = () => {
   const { CloseButton, Content, Body, Header, Footer } = Modal;
   const { Group } = Button;
@@ -18,13 +18,17 @@ export const AddItem = () => {
     priority: "bajo",
     type: "deseo"
   });
-
+  const toast = useToast();
 
 
   const addItemInList = () => {
-
     const newPosition = mainLists[selectedList]?.items?.length || 0;
     set(ref(db, `/listas/${selectedList}/items/${newPosition}`), text);
+    toast.show({
+      description: "TAREA AGREGADA",
+      placement: "top"
+    })
+
   }
   const [listNames, setListNames] = React.useState([]);
 
@@ -52,7 +56,6 @@ export const AddItem = () => {
         transparent={true}
         isOpen={modalVisible}
         onClose={() => {
-          Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
         <Content maxWidth="350">
@@ -77,10 +80,6 @@ export const AddItem = () => {
                 })
               }
             </Select>
-
-
-
-
 
             <Input
               onChangeText={(e) => {
@@ -113,19 +112,6 @@ export const AddItem = () => {
               <Select.Item label="Muy Importante" value="alto" />
               <Select.Item label="Poco Importante" value="bajo" />
             </Select>
-
-
-
-
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={addItemInList}>
-              <Text style={styles.textStyle}>agregar</Text>
-            </Pressable> */}
-
-
-
-
           </Body>
           <Footer>
             <Group space={2}>
@@ -146,11 +132,7 @@ export const AddItem = () => {
 
       </Modal >
 
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress=>
-        <Text style={styles.textStyle}>Agregar Item NUEVO!</Text>
-      </Pressable> */}
+
       <Box Box alignItems="center" >
         <Button onPress={() => setModalVisible(true)}>Agregar a la lista</Button></Box >
     </View >
