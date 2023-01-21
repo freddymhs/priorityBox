@@ -1,10 +1,12 @@
 
 import { onValue, ref } from "@firebase/database";
+import { SectionList } from "native-base";
 import { useEffect, useState } from "react";
 import {
   Button,
   FlatList,
   Pressable,
+
   Text,
   TextInput,
   TouchableOpacity,
@@ -40,32 +42,46 @@ export default ListSection = () => {
   const List = titlesInList.map((t) => {
     const oneList = mainLists?.[t];
     const itemsOfList = oneList?.items;
+
     return (
       <FlatList
         key={oneList?.description}
+        horizontal
         style={{
-          // borderWidth: 1,
-          // borderColor: "black",
-          // width: 100,
+          borderWidth: 1,
+          borderColor: "black",
+          height: 100,
         }}
         data={itemsOfList}
-        renderItem={({ item }) => <Text title={item?.name}>{item?.name}</Text>}
+        renderItem={({ item }) => <Text
+          style={{
+            // borderWidth: 1, borderColor: 'black',
+            margin: 2
+          }}
+          title={item?.name}>{item?.name}</Text>}
         ListHeaderComponent={() => (
           <>
-            <AddItem title={t} mainLists={mainLists} />
+
+            <Text>{t}</Text>
+            <Text>
+              {itemsOfList ? `${itemsOfList?.length} items` : "sin elementos"}
+            </Text>
           </>
+
         )}
-        ListFooterComponent={(item) => (
-          <Text>
-            {itemsOfList ? `${itemsOfList?.length} items` : "sin elementos"}
-          </Text>
-        )}
+      // ListFooterComponent={(item) => (
+      //   <Text>
+      //     {itemsOfList ? `${itemsOfList?.length} items` : "sin elementos"}
+      //   </Text>
+      // )}
       />
+
+
     );
   });
   return (
     <View
-      style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}
+    // style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}
     >
       {List}
     </View>

@@ -31,7 +31,7 @@ export function NavMenu() {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="ListSection">
           <Drawer.Screen name="Home" component={Home} />
           <Drawer.Screen name="ListSection" component={ListSection} />
         </Drawer.Navigator>
