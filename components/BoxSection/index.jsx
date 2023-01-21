@@ -71,9 +71,9 @@ export const BoxSection = ({ mainLists }) => {
 
   // primero organizemos las listas por prioridad
   // luego vamos rellenando cada  cuadros hasta su tope de 40
-  const keysInList = Object.keys(mainLists);
+  const keysInList = mainLists && Object.keys(mainLists);
 
-  const formattedItemsFromLists = keysInList.reduce(
+  const formattedItemsFromLists = keysInList?.reduce(
     (accum, key) => {
       const list = mainLists[key];
       // const hightPriorityList = list.priority === "alto";
@@ -105,6 +105,7 @@ export const BoxSection = ({ mainLists }) => {
 
   return (
     <View style={{ flex: 2, flexDirection: "row" }}>
+
       <View
         style={{
           flex: 1,
@@ -114,7 +115,7 @@ export const BoxSection = ({ mainLists }) => {
           alignItems: "center",
         }}
       >
-        {/* <Text>Necesidada</Text> */}
+        <Text>Necesidad</Text>
         <View
           style={{
             flex: 1,
@@ -127,7 +128,7 @@ export const BoxSection = ({ mainLists }) => {
             flexDirection: "row", //que sea column cuando sean muchos ITEMS
           }}
         >
-          {formattedItemsFromLists[0].map((items) => {
+          {formattedItemsFromLists?.[0]?.map((items) => {
             return (
               <>
                 <TouchableOpacity
@@ -159,7 +160,7 @@ export const BoxSection = ({ mainLists }) => {
             flexDirection: "row", //que sea column cuando sean muchos ITEMS
           }}
         >
-          {formattedItemsFromLists[1].map((items) => {
+          {formattedItemsFromLists?.[1]?.map((items) => {
             return (
               <>
                 <TouchableOpacity
@@ -201,7 +202,8 @@ export const BoxSection = ({ mainLists }) => {
             flexDirection: "row", //que sea column cuando sean muchos ITEMS
           }}
         >
-          {formattedItemsFromLists[2].map((items) => {
+
+          {formattedItemsFromLists?.[2]?.map((items) => {
             return (
               <>
                 <TouchableOpacity
@@ -232,7 +234,7 @@ export const BoxSection = ({ mainLists }) => {
             flexDirection: "row", //que sea column cuando sean muchos ITEMS
           }}
         >
-          {formattedItemsFromLists[3].map((items) => {
+          {formattedItemsFromLists?.[3]?.map((items) => {
             return (
               <>
                 <TouchableOpacity

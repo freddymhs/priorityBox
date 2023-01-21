@@ -38,8 +38,11 @@ export const AddItem = () => {
       try {
         onValue(refRealTimeDatabase, (snapshot) => {
           const data = snapshot.val();
-          setMainLists(data)
-          setListNames(Object.keys(data))
+          if (data) {
+            setMainLists(data);
+            setListNames(Object.keys(data))
+          }
+
         });
       } catch (err) {
         console.log("no pude obtener la data desde firebase realtime");

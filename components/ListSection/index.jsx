@@ -23,7 +23,7 @@ export default ListSection = () => {
       try {
         onValue(refRealTimeDatabase, (snapshot) => {
           const data = snapshot.val();
-          setMainLists(data);
+          data && setMainLists(data);
         });
       } catch (err) {
         console.log("no pude obtener la data desde firebase realtime");
@@ -44,9 +44,9 @@ export default ListSection = () => {
       <FlatList
         key={oneList?.description}
         style={{
-          borderWidth: 1,
-          borderColor: "black",
-          width: 100,
+          // borderWidth: 1,
+          // borderColor: "black",
+          // width: 100,
         }}
         data={itemsOfList}
         renderItem={({ item }) => <Text title={item?.name}>{item?.name}</Text>}
@@ -64,7 +64,9 @@ export default ListSection = () => {
     );
   });
   return (
-    <View style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}>
+    <View
+      style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}
+    >
       {List}
     </View>
   );
