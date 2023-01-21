@@ -38,3 +38,15 @@ react-native-safe-area-context
 npm install @react-navigation/native
 npx expo install react-native-screens react-native-safe-area-context
 @react-navigation/native-stack
+
+
+#instalando native base?
+expo install react-native-svg
+npm install native-base
+expo install @expo/vector-icons
+
+
+#reanmiated //npm install react-native-reanimated@2.9.1
+yarn add react-native-reanimated
+editar babel
+expo start -c
