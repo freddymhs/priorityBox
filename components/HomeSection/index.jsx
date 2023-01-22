@@ -1,6 +1,6 @@
 
 
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet } from "react-native";
 import { onValue, ref, set } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,6 +12,7 @@ import { db } from "../../init-firebase";
 
 import { BoxSection } from "../BoxSection/index";
 import { AddItem } from "./AddItem";
+
 
 
 const styles = StyleSheet.create({
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home() {
+export default function HomeSection() {
   useEffect(() => {
     function getDataFromFirebase() {
       try {
@@ -93,41 +94,16 @@ export default function Home() {
   }
   //
   const [mainLists, setMainLists] = useState({});
-  const [titleOfList, setTitleOfList] = useState("");
 
-  const createNewList = () => {
-    const Added = {
-      ...mainLists,
-      [titleOfList]: { description: "nada", items: [{}] },
-    };
-
-    // CREA LA LISTA
-    setMainLists(Added);
-    //*sube a firebase*
-    set(ref(db, "/listas"), Added);
-    // set(refRealTimeDatabase, Added);
-  };
   const addItemToList = () => {
     console.log("qwerty");
   };
 
   return (
-    <>
-
-      <View style={styles.mainView}>
-        {/* DESEOS/NECESIDADES */}
-        <BoxSection mainLists={mainLists} />
-        {/* creacion de listas */}
-        {/* <AddList
-          titleOfList={titleOfList}
-          setTitleOfList={setTitleOfList}
-          createNewList={createNewList}
-        /> */}
-        <AddItem />
-        {/* listado de listas */}
-        {/* <ListSection mainLists={mainLists} addItemToList={addItemToList} /> */}
-      </View>
-      {/* </SafeAreaView> */}
-    </>
-  );
+    <View style={styles.mainView}>
+      {/* DESEOS/NECESIDADES */}
+      <BoxSection mainLists={mainLists} />
+      {/* agregar itemss!!!!@#!@#! */}
+      <AddItem />
+    </View>);
 }

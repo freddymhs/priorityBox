@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from '../Home/index';
+import HomeSection from '../HomeSection/index';
 import ListSection from '../ListSection/index';
 import { NativeBaseProvider } from 'native-base';
 
@@ -32,7 +32,7 @@ export function NavMenu() {
     <NavigationContainer>
       <NativeBaseProvider>
         <Drawer.Navigator initialRouteName="ListSection">
-          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="HomeSection" component={HomeSection} />
           <Drawer.Screen name="ListSection" component={ListSection} />
         </Drawer.Navigator>
       </NativeBaseProvider>

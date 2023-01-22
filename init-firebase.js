@@ -67,5 +67,5 @@ const list = {
   },
 };
 // set(ref(db, "/listas"), list);
-
-//
+// update(ref(db, "/listas/casa/items/0"), { name: "hola" });
+// remove(ref(db, "/listas/casa/items/0"))
