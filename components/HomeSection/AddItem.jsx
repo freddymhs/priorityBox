@@ -78,8 +78,8 @@ export const AddItem = () => {
                 endIcon: <CheckIcon size={4} />
               }}>
               {
-                listNames?.map((name) => {
-                  return <Item label={name} value={name} />
+                listNames?.map((name, i) => {
+                  return <Item label={name} value={name} key={i} />
                 })
               }
             </Select>

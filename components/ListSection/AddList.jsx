@@ -1,13 +1,8 @@
 import { ref, set } from '@firebase/database';
-import { Box, Button, Center, CheckIcon, CloseIcon, HStack, IconButton, Input, Modal, Select, VStack } from 'native-base';
+import { Box, Button, Input, Modal, Select } from 'native-base';
 import { useState } from "react";
 import {
-  FlatList,
-  Pressable,
   StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { db } from '../../init-firebase';
@@ -19,11 +14,12 @@ export const AddList = ({ mainLists, setMainLists }) => {
   const { Item } = Select;
 
   const [titleOfList, setTitleOfList] = useState("");
+  const [descriptionOfList, setDescriptionOfList] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const createNewList = () => {
     const Added = {
       ...mainLists,
-      [titleOfList]: { description: "nada", items: [{}] },
+      [titleOfList]: { description: descriptionOfList || "", items: [{}] },
     };
     // // CREA LA LISTA
     setMainLists(Added);
@@ -36,7 +32,7 @@ export const AddList = ({ mainLists, setMainLists }) => {
 
   return (
 
-    <View style={styles.centeredView}>
+    <>
 
       <Modal
         animationType="slide"
@@ -57,6 +53,16 @@ export const AddList = ({ mainLists, setMainLists }) => {
               }}
               value={titleOfList}
               w="100%" placeholder="Asigne un nombre" _light={{
+                placeholderTextColor: "blueGray.400"
+              }} _dark={{
+                placeholderTextColor: "blueGray.50"
+              }} />
+            <Input
+              onChangeText={(e) => {
+                setDescriptionOfList(e);
+              }}
+              value={descriptionOfList}
+              w="100%" placeholder="describa objetivo de esta lista" _light={{
                 placeholderTextColor: "blueGray.400"
               }} _dark={{
                 placeholderTextColor: "blueGray.50"
@@ -82,11 +88,10 @@ export const AddList = ({ mainLists, setMainLists }) => {
         </Content>
 
       </Modal >
-
-
       <Box Box alignItems="center" >
-        <Button onPress={() => setModalVisible(true)}>crear una Lista</Button></Box >
-    </View >
+        <Button onPress={() => setModalVisible(true)}>crear una Lista</Button>
+      </Box >
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -96,12 +101,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
+
   modalView: {
     margin: 20,
     backgroundColor: 'white',

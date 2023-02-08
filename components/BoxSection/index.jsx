@@ -1,14 +1,14 @@
 
+import { SectionList } from "native-base";
 import { useState } from "react";
-import { Dimensions, ScrollView, StyleSheet } from 'react-native';
+
 import {
-  Button,
-  FlatList,
-  Pressable,
+  Dimensions,
+  StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
+
 } from "react-native";
 
 export const BoxSection = ({ mainLists }) => {
@@ -59,226 +59,102 @@ export const BoxSection = ({ mainLists }) => {
   );
 
   return (
-    <View style={{ flex: 6, flexDirection: 'column' }}>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
-          <Text>Esquina superior izquierda</Text>
-          <ScrollView>
+    <View style={{ flex: 6, flexDirection: 'row' }}>
 
-            <FlatList
-              data={formattedItemsFromLists?.[0]}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={styles.itemContainer}>
-                  <Text style={styles.itemText}>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.name}
-            />
-
-          </ScrollView>
+      <View style={{ flex: 1, flexDirection: 'column' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text>NECESIDAD</Text>
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
-          <Text>Esquina superior derecha</Text>
-          <ScrollView>
 
-            <FlatList
-              data={formattedItemsFromLists?.[1]}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={styles.itemContainer}>
-                  <Text style={styles.itemText}>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.name}
-            />
 
-          </ScrollView>
-        </View>
-      </View>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
-          <Text>Esquina inferior izquierda</Text>
-          <ScrollView>
-            <FlatList
-              data={formattedItemsFromLists?.[2]}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={styles.itemContainer}>
-                  <Text style={styles.itemText}>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.name}
-            />
-          </ScrollView>
+          <SectionList
+            sections={[
+              {
+                data: formattedItemsFromLists?.[2],
+              },
+            ]}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.itemContainer}>
+                <Text style={styles.itemText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+            renderSectionHeader={({ section }) => (
+              <Text style={styles.sectionHeader}>{section.title}</Text>
+            )}
+            keyExtractor={(item) => item.name}
+            showsVerticalScrollIndicator={false}
+          />
+
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
-          <Text>Esquina inferior derecha</Text>
-          <ScrollView>
-            <FlatList
-              data={formattedItemsFromLists?.[3]}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={styles.itemContainer}>
-                  <Text style={styles.itemText}>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.name}
-            />
-          </ScrollView>
+          <SectionList
+            sections={[
+              {
+                data: formattedItemsFromLists?.[3],
+              },
+            ]}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.itemContainer}>
+                <Text style={styles.itemText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+            renderSectionHeader={({ section }) => (
+              <Text style={styles.sectionHeader}>{section.title}</Text>
+            )}
+            keyExtractor={(item) => item.name}
+            showsVerticalScrollIndicator={false}
+          />
         </View>
       </View>
+      <View style={{ flex: 1, flexDirection: 'column' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text>DESEO</Text>
+        </View>
+
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
+          <SectionList
+            sections={[
+              {
+                data: formattedItemsFromLists?.[0],
+              },
+            ]}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.itemContainer}>
+                <Text style={styles.itemText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+            renderSectionHeader={({ section }) => (
+              <Text style={styles.sectionHeader}>{section.title}</Text>
+            )}
+            keyExtractor={(item) => item.name}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
+          <SectionList
+            sections={[
+              {
+                data: formattedItemsFromLists?.[1],
+              },
+            ]}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.itemContainer}>
+                <Text style={styles.itemText}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+            renderSectionHeader={({ section }) => (
+              <Text style={styles.sectionHeader}>{section.title}</Text>
+            )}
+            keyExtractor={(item) => item.name}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      </View>
+
+
     </View>
-    // <View style={{ flex: 2, flexDirection: "row" }}>
 
-    //   <View
-    //     style={{
-    //       flex: 1,
-    //       // flexDirection: "column",
-    //       borderWidth: 1,
-    //       borderBottomColor: "black",
-    //       alignItems: "center",
-    //     }}
-    //   >
-    //     <Text>Necesidad</Text>
-    //     <View
-    //       style={{
-    //         flex: 1,
-    //         flexWrap: "wrap",
-    //         borderWidth: 1,
-    //         borderBottomColor: "black",
-    //         alignItems: "center",
-    //         alignContent: "center",
-    //         // width: "50%",
-    //         flexDirection: "row", //que sea column cuando sean muchos ITEMS
-    //       }}
-    //     >
-    //       {formattedItemsFromLists?.[0]?.map((items) => {
-    //         return (
-    //           <>
-    //             <TouchableOpacity
-    //               style={{
-    //                 backgroundColor: "grey",
-    //                 borderRadius: 5,
-    //                 height: 40,
-    //                 padding: 10,
-    //                 margin: 1,
-    //               }}
-    //               onPress={() => alert("Botón pulsado")}
-    //             >
-    //               <Text style={{ color: "white" }}>{items.name}</Text>
-    //             </TouchableOpacity>
-    //           </>
-    //         );
-    //       })}
-    //     </View>
-
-    //     <View
-    //       style={{
-    //         flex: 1,
-    //         flexWrap: "wrap",
-    //         borderWidth: 1,
-    //         borderBottomColor: "black",
-    //         alignItems: "center",
-    //         alignContent: "center",
-    //         // width: "50%",
-    //         flexDirection: "row", //que sea column cuando sean muchos ITEMS
-    //       }}
-    //     >
-    //       {formattedItemsFromLists?.[1]?.map((items) => {
-    //         return (
-    //           <>
-    //             <TouchableOpacity
-    //               style={{
-    //                 backgroundColor: "grey",
-    //                 borderRadius: 5,
-    //                 height: 40,
-    //                 padding: 10,
-    //                 margin: 1,
-    //               }}
-    //               onPress={() => alert("Botón pulsado")}
-    //             >
-    //               <Text style={{ color: "white" }}>{items.name}</Text>
-    //             </TouchableOpacity>
-    //           </>
-    //         );
-    //       })}
-    //     </View>
-    //   </View>
-    //   <View
-    //     style={{
-    //       flex: 1,
-    //       // flexDirection: "column",
-    //       borderWidth: 1,
-    //       borderBottomColor: "black",
-    //       alignItems: "center",
-    //     }}
-    //   >
-    //     <Text>Deseo</Text>
-    //     <View
-    //       style={{
-    //         flex: 1,
-    //         flexWrap: "wrap",
-    //         borderWidth: 1,
-    //         borderBottomColor: "black",
-    //         alignItems: "center",
-    //         alignContent: "center",
-    //         // width: "50%",
-    //         flexDirection: "row", //que sea column cuando sean muchos ITEMS
-    //       }}
-    //     >
-
-    //       {formattedItemsFromLists?.[2]?.map((items) => {
-    //         return (
-    //           <>
-    //             <TouchableOpacity
-    //               style={{
-    //                 backgroundColor: "grey",
-    //                 borderRadius: 5,
-    //                 height: 40,
-    //                 padding: 10,
-    //                 margin: 1,
-    //               }}
-    //               onPress={() => alert("Botón pulsado")}
-    //             >
-    //               <Text style={{ color: "white" }}>{items.name}</Text>
-    //             </TouchableOpacity>
-    //           </>
-    //         );
-    //       })}
-    //     </View>
-    //     <View
-    //       style={{
-    //         flex: 1,
-    //         flexWrap: "wrap",
-    //         borderWidth: 1,
-    //         borderBottomColor: "black",
-    //         alignItems: "center",
-    //         alignContent: "center",
-    //         // width: "50%",
-    //         flexDirection: "row", //que sea column cuando sean muchos ITEMS
-    //       }}
-    //     >
-    //       {formattedItemsFromLists?.[3]?.map((items) => {
-    //         return (
-    //           <>
-    //             <TouchableOpacity
-    //               style={{
-    //                 backgroundColor: "grey",
-    //                 borderRadius: 5,
-    //                 height: 40,
-    //                 padding: 10,
-    //                 margin: 1,
-    //               }}
-    //               onPress={() => alert("Botón pulsado")}
-    //             >
-    //               <Text style={{ color: "white" }}>{items.name}</Text>
-    //             </TouchableOpacity>
-    //           </>
-    //         );
-    //       })}
-    //     </View>
-    //   </View>
-    // </View>
   );
 };

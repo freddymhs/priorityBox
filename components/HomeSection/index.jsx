@@ -101,9 +101,7 @@ export default function HomeSection() {
 
   return (
     <View style={styles.mainView}>
-      {/* DESEOS/NECESIDADES */}
       <BoxSection mainLists={mainLists} />
-      {/* agregar itemss!!!!@#!@#! */}
       <AddItem />
     </View>);
 }

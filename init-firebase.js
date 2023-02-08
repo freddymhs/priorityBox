@@ -19,18 +19,14 @@ const list = {
     description: "mi salud",
     items: [
       {
-        name: "nutricionista",
+        name: "tomar vitaminas",
         priority: "alto",
         type: "deseo",
       },
+
       {
-        name: "ir al oculista",
+        name: "revisar calendario",
         priority: "bajo",
-        type: "necesidad",
-      },
-      {
-        name: "gym",
-        priority: "mid",
         type: "deseo",
       },
     ],
@@ -40,11 +36,11 @@ const list = {
     items: [
       {
         name: "comprar regalos",
-        priority: "mid",
+        priority: "bajo",
         type: "deseo",
       },
       {
-        name: "oculista",
+        name: "ir al doc",
         priority: "alto",
         type: "deseo",
       },
@@ -54,12 +50,12 @@ const list = {
     description: "listado de cosas de casa",
     items: [
       {
-        name: "fix cocina",
-        priority: "mid",
+        name: "cambiar cables",
+        priority: "alto",
         type: "necesidad",
       },
       {
-        name: "fix casa boby",
+        name: "revisar grifo viejo",
         priority: "alto",
         type: "necesidad",
       },

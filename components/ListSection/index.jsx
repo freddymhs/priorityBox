@@ -1,6 +1,6 @@
 
 import { onValue, ref, set, update, remove } from "@firebase/database";
-import { SectionList } from "native-base";
+import { ScrollView, SectionList } from "native-base";
 import { useEffect, useState } from "react";
 import {
   Button,
@@ -11,11 +11,13 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+
 } from "react-native";
 import { db, listRef } from "../../init-firebase";
 import { AddItem } from "../HomeSection/AddItem";
 import { AddList } from './AddList';
 import { List, ListItem, Icon } from 'native-base';
+import { ListOfLists } from "./ListOfLists";
 
 
 
@@ -68,80 +70,23 @@ export default ListSection = () => {
   };
 
 
-  const titlesInList = Object.keys(mainLists);
-
-  const List = titlesInList.map((t) => {
-    const oneList = mainLists?.[t];
-    const itemsOfList = oneList?.items;
-
-    return (
-      <FlatList
-        key={oneList?.description}
-        // horizontal
-        style={{
-          borderWidth: 1,
-          borderColor: "black",
-          height: 100,
-        }}
-        data={itemsOfList}
-        renderItem={({ item }) =>
-          // <Text
-          //   style={{
-          //     borderWidth: 1,
-          //     borderColor: 'black',
-          //     margin: 2,
-          //     display: 'flex',
-
-          //   }}
-          //   title={item?.name}>{item?.name}</Text>
-          <View style={{
-            flex: 1,
-            flexDirection: "column",
-            alignItems: 'center',
-          }}>
-            <TouchableOpacity
-              onPress={(e) => {
-
-                handleDelete({ item, t })
-              }}
-            >
-              <Text
-
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'black',
-                  margin: 2,
-                  // display: 'flex',
-
-                }}
-                title={item?.name}>{item?.name}</Text>
-            </TouchableOpacity>
-
-          </View>
-
-        }
-        ListHeaderComponent={() => (
-          <>
-
-            <Text>{t}</Text>
-            <Text>
-              {itemsOfList ? `${itemsOfList?.length} items` : "sin elementos"}
-            </Text>
-          </>
-
-        )}
-      />
 
 
-    );
-  });
-  // style={{ flex: 1, justifyContent: "center", flexDirection: "row" }}
+
   return (
     <>
-      <View>
-        {List}
+
+      <View style={{ flex: 9 }}>
+        <ListOfLists mainLists={mainLists} handleDelete={handleDelete} />
       </View>
-      <AddList mainLists={mainLists} setMainLists={setMainLists} />
+
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+      }}>
+
+        <AddList mainLists={mainLists} setMainLists={setMainLists} />
+      </View>
     </>
   );
 };
