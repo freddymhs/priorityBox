@@ -50,3 +50,7 @@ expo install @expo/vector-icons
 yarn add react-native-reanimated
 editar babel
 expo start -c
+
+
+#build app
+eas build -p android
