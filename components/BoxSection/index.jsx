@@ -63,7 +63,7 @@ export const BoxSection = ({ mainLists }) => {
 
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text>NECESIDAD</Text>
+          <Text>DESEO</Text>
         </View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
 
@@ -109,7 +109,7 @@ export const BoxSection = ({ mainLists }) => {
       </View>
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text>DESEO</Text>
+          <Text>NECESIDAD</Text>
         </View>
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
