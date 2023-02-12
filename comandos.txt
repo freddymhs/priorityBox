@@ -54,3 +54,4 @@ expo start -c
 
 #build app
 eas build -p android
+cambiar en app.json->expo->"version"
