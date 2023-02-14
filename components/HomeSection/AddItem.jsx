@@ -1,9 +1,8 @@
 import { onValue, ref, set } from 'firebase/database';
 import { Box, Button, Center, CheckIcon, CloseIcon, HStack, IconButton, Input, Modal, Select, VStack } from 'native-base';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Pressable, View, TextInput } from 'react-native';
+import { StyleSheet, Text, Pressable, View, TextInput, Alert } from 'react-native';
 import { db } from '../../init-firebase';
-import { Alert } from "native-base";
 import { useToast } from 'native-base';
 export const AddItem = () => {
   const { CloseButton, Content, Body, Header, Footer } = Modal;
@@ -22,6 +21,11 @@ export const AddItem = () => {
 
 
   const addItemInList = () => {
+    if (selectedList === null || text?.name.length < 1) {
+      Alert.alert('No es valido un campo vacio',);
+      return;
+    }
+
     const newPosition = mainLists[selectedList]?.items?.length || 0;
     set(ref(db, `/listas/${selectedList}/items/${newPosition}`), text);
     toast.show({
@@ -29,6 +33,7 @@ export const AddItem = () => {
       placement: "top"
     })
 
+    setSelectedList(null);
     onChangeText({
       name: "",
       priority: "bajo",

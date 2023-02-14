@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   StyleSheet,
   View,
+  Alert
 } from "react-native";
 import { db } from '../../init-firebase';
 
@@ -17,14 +18,25 @@ export const AddList = ({ mainLists, setMainLists }) => {
   const [descriptionOfList, setDescriptionOfList] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const createNewList = () => {
+
+    if (titleOfList.length < 1 || descriptionOfList.length < 1) {
+      Alert.alert('No es valido un campo vacio',)
+      return;
+    }
     const Added = {
       ...mainLists,
       [titleOfList]: { description: descriptionOfList || "", items: [{}] },
     };
+
     // // CREA LA LISTA
     setMainLists(Added);
     // #sube a firebase
     set(ref(db, "/listas"), Added);
+
+
+
+    setTitleOfList("")
+    setDescriptionOfList("")
 
   };
 
@@ -43,7 +55,7 @@ export const AddList = ({ mainLists, setMainLists }) => {
         }}>
         <Content maxWidth="350">
           <CloseButton />
-          <Header>Ingrese nuevo Lista</Header>
+          <Header>Ingrese nueva Lista</Header>
 
           <Body>
 

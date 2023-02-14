@@ -95,10 +95,6 @@ export default function HomeSection() {
   //
   const [mainLists, setMainLists] = useState({});
 
-  const addItemToList = () => {
-    console.log("qwerty");
-  };
-
   return (
     <View style={styles.mainView}>
       <BoxSection mainLists={mainLists} />
