@@ -29,6 +29,12 @@ export const AddItem = () => {
       placement: "top"
     })
 
+    onChangeText({
+      name: "",
+      priority: "bajo",
+      type: "deseo"
+    });
+
   }
   const [listNames, setListNames] = React.useState([]);
 
