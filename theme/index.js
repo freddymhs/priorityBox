@@ -1,10 +1,12 @@
-import { extendTheme } from "native-base";
+// esto no es necesario, pero es para que se vea mejor
 
-const theme = extendTheme({
-  config: {
-    // Changing initialColorMode to 'dark'
-    initialColorMode: "dark",
-  },
-});
+// import { extendTheme } from "native-base";
 
-export default theme;
+// const theme = extendTheme({
+//   config: {
+//     initialColorMode: "dark",
+//   },
+// });
+// const theme = {};
+
+// export default theme;
