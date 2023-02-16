@@ -1,12 +1,18 @@
-// esto no es necesario, pero es para que se vea mejor
+import { extendTheme } from "native-base";
 
-// import { extendTheme } from "native-base";
+export const mySuperTheme = extendTheme({
+  safeAreaViewContainer: {
+    flex: 1,
+  },
+  config: {
+    initialColorStatusBar: "dark-content",
+  },
+  //
 
-// const theme = extendTheme({
-//   config: {
-//     initialColorMode: "dark",
-//   },
-// });
-// const theme = {};
+  colors: {
+    primary: "green.500",
+    secondary: "blue.500",
+  },
+});
 
-// export default theme;
+// debo hacer un hook peronslizado para probar el cambio de color

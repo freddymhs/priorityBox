@@ -27,15 +27,34 @@ function NotificationsScreen({ navigation }) {
 
 const Drawer = createDrawerNavigator();
 
+function ExampleUseTheme() {
+  const { colors } = useTheme();
+  const { primary, secondary } = colors;
+  const [isPressed, setIsPressed] = useState(false);
+
+  const handlePress = () => {
+    setIsPressed(!isPressed);
+  };
+  return (
+    <Center flex={1} p="3">
+      <Button
+        onPress={handlePress}
+        bg={isPressed ? primary : secondary}
+        _text={{ color: "white" }}
+      >
+        {isPressed ? "Pressed!" : "Press me!"}
+      </Button>
+    </Center>
+  );
+}
+
 export function NavMenu() {
   return (
-    <NavigationContainer>
-      <NativeBaseProvider>
-        <Drawer.Navigator initialRouteName="HomeSection">
-          <Drawer.Screen name="HomeSection" component={HomeSection} />
-          <Drawer.Screen name="ListSection" component={ListSection} />
-        </Drawer.Navigator>
-      </NativeBaseProvider>
-    </NavigationContainer>
+
+    <Drawer.Navigator initialRouteName="HomeSection">
+      <Drawer.Screen name="HomeSection" component={HomeSection} />
+      <Drawer.Screen name="ListSection" component={ListSection} />
+    </Drawer.Navigator>
+
   );
 }
