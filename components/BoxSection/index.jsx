@@ -1,4 +1,3 @@
-
 import { SectionList, useTheme } from "native-base";
 import { useState } from "react";
 
@@ -8,22 +7,21 @@ import {
   Text,
   TouchableOpacity,
   View,
-
 } from "react-native";
 
 export const BoxSection = ({ mainLists }) => {
-  const screenWidth = Dimensions.get('window').width;
+  const screenWidth = Dimensions.get("window").width;
   const styles = StyleSheet.create({
     itemContainer: {
-      backgroundColor: '#e0e0e0',
+      backgroundColor: "#e0e0e0",
       padding: 4,
       margin: 5,
       borderRadius: 20,
     },
     itemText: {
       fontSize: 10,
-      color: 'black',
-      textAlign: 'center',
+      color: "black",
+      textAlign: "center",
       width: screenWidth / 6,
     },
   });
@@ -58,20 +56,39 @@ export const BoxSection = ({ mainLists }) => {
     [[], [], [], []]
   );
 
-
-  const { components: { boxArea } } = useTheme()
+  const {
+    components: { boxArea },
+  } = useTheme();
   return (
-    <View
-      style={boxArea}
-    >
+    <View style={boxArea}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          borderRightWidth: 1,
+        }}
+      >
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
 
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            borderRadius: 8,
+            borderBottomWidth: 1,
+          }}
+        >
           <Text>DESEO</Text>
         </View>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
-
-
+        <View
+          style={{
+            borderBottomWidth: 1,
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            width: screenWidth / 2,
+            borderColor: "black",
+          }}
+        >
           <SectionList
             sections={[
               {
@@ -89,9 +106,18 @@ export const BoxSection = ({ mainLists }) => {
             keyExtractor={(item) => item.name}
             showsVerticalScrollIndicator={false}
           />
-
         </View>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            width: screenWidth / 2,
+            // borderRightWidth: 1,
+            // borderTopWidth: 1,
+            // borderRadius: 8
+          }}
+        >
           <SectionList
             sections={[
               {
@@ -111,12 +137,36 @@ export const BoxSection = ({ mainLists }) => {
           />
         </View>
       </View>
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+        }}
+      >
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+
+            borderRadius: 8,
+            borderBottomWidth: 1,
+          }}
+        >
           <Text>NECESIDAD</Text>
         </View>
 
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            width: screenWidth / 2,
+            // borderLeftWidth: 1,
+            // borderBottompWidth: 1,
+            // borderRadius: 8
+          }}
+        >
           <SectionList
             sections={[
               {
@@ -136,7 +186,17 @@ export const BoxSection = ({ mainLists }) => {
           />
         </View>
 
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: screenWidth / 2, borderColor: 'black', borderWidth: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            width: screenWidth / 2,
+            // borderLeftWidth: 1,
+            // borderTopWidth: 1,
+            // borderRadius: 8
+          }}
+        >
           <SectionList
             sections={[
               {
@@ -156,9 +216,6 @@ export const BoxSection = ({ mainLists }) => {
           />
         </View>
       </View>
-
-
     </View>
-
   );
 };

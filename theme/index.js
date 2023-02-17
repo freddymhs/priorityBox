@@ -20,6 +20,7 @@ export const mySuperTheme = extendTheme({
     boxArea: {
       flex: 20,
       flexDirection: "row",
+      backgroundColor: "#62EFFF",
     },
     separator: {
       flex: 1,
