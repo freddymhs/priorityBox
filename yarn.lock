@@ -8675,7 +8675,7 @@ nanomatch@^1.2.9:
 
 native-base@^3.4.25:
   version "3.4.25"
-  resolved "https://registry.yarnpkg.com/native-base/-/native-base-3.4.25.tgz#0b5871855be4c48ef72768e50db002d6a0e1ad23"
+  resolved "https://registry.npmjs.org/native-base/-/native-base-3.4.25.tgz"
   integrity sha512-MOeqNji6eAXge9uWsKgfyna8kakdoQuynxoDlVgzTrXXT0o/UrmIUAz+xNPM7rjYHd0MM+UdohPilV1/Z5pB9Q==
   dependencies:
     "@react-aria/visually-hidden" "^3.2.1"

@@ -1,5 +1,5 @@
 import { ref, set } from '@firebase/database';
-import { Box, Button, Input, Modal, Select } from 'native-base';
+import { Box, Button, Input, Modal, Select, Text, useTheme } from 'native-base';
 import { useState } from "react";
 import {
   StyleSheet,
@@ -10,6 +10,10 @@ import { db } from '../../init-firebase';
 
 
 export const AddList = ({ mainLists, setMainLists }) => {
+  const { AddToListModal,
+    components: { simpleButton },
+    modalBtnText, modalBtn, modal, modalBody, modalHeader, modalFooter, modalContent } = useTheme();
+
   const { CloseButton, Content, Body, Header, Footer } = Modal;
   const { Group } = Button;
   const { Item } = Select;
@@ -55,54 +59,71 @@ export const AddList = ({ mainLists, setMainLists }) => {
         }}>
         <Content maxWidth="350">
           <CloseButton />
-          <Header>Ingrese nueva Lista</Header>
+          <Header style={modalHeader}>Ingrese nueva Lista</Header>
 
-          <Body>
+          <Body style={modalBody}>
 
-            <Input
+            <Input placeholderTextColor="#34656A"
               onChangeText={(e) => {
                 setTitleOfList(e);
               }}
               value={titleOfList}
-              w="100%" placeholder="Asigne un nombre" _light={{
-                placeholderTextColor: "blueGray.400"
-              }} _dark={{
-                placeholderTextColor: "blueGray.50"
-              }} />
-            <Input
+              w="100%" placeholder="Asigne un nombre"
+            // _light={{
+            //   placeholderTextColor: "blueGray.400"
+            // }} _dark={{
+            //   placeholderTextColor: "blueGray.50"
+            // }}
+            />
+            <Input placeholderTextColor="#34656A"
               onChangeText={(e) => {
                 setDescriptionOfList(e);
               }}
               value={descriptionOfList}
-              w="100%" placeholder="describa objetivo de esta lista" _light={{
-                placeholderTextColor: "blueGray.400"
-              }} _dark={{
-                placeholderTextColor: "blueGray.50"
-              }} />
+              w="100%" placeholder="describa objetivo de esta lista"
+            // _light={{
+            //   placeholderTextColor: "blueGray.400"
+            // }} _dark={{
+            //   placeholderTextColor: "blueGray.50"
+            // }}
+            />
 
 
           </Body>
-          <Footer>
+          <Footer style={modalFooter}>
             <Group space={2}>
-              <Button variant="ghost" colorScheme="blueGray" onPress={() => {
-                setModalVisible(false);
-              }}>
-                Cancel
+              <Button
+                style={modalBtn}
+                // variant="ghost" colorScheme="blueGray"
+                onPress={() => {
+                  setModalVisible(false);
+                }}>
+                <Text style={modalBtnText}>
+                  Cancelar
+                </Text>
               </Button>
-              <Button onPress={() => {
-                createNewList();
-                setModalVisible(false);
-              }}>
-                Save
+              <Button
+                style={modalBtn}
+                onPress={() => {
+                  createNewList();
+                  setModalVisible(false);
+                }}>
+
+                <Text style={modalBtnText}>
+                  Guardar
+                </Text>
               </Button>
             </Group>
           </Footer>
         </Content>
 
       </Modal >
-      <Box Box alignItems="center" >
-        <Button onPress={() => setModalVisible(true)}>crear una Lista</Button>
-      </Box >
+      {/* <Box Box alignItems="center" > */}
+
+      <Button style={simpleButton.btn} onPress={() => setModalVisible(true)}>
+        <Text style={simpleButton.btn.text}> crear una Lista </Text>
+      </Button>
+      {/* </Box > */}
     </>
   );
 };

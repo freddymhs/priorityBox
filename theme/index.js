@@ -5,10 +5,12 @@ export const mySuperTheme = extendTheme({
   //  safe area view
   safeAreaViewContainer: {
     flex: 1,
+    backgroundColor: "#62EFFF", //////////////comparten color de fondo
   },
   // cosas fuear de la app
   config: {
-    initialColorStatusBar: "dark-content",
+    // initialColorStatusBar: "dark-content",
+    initialColorStatusBar: "cyan",
   },
   // componentes de la app
 
@@ -20,7 +22,7 @@ export const mySuperTheme = extendTheme({
     boxArea: {
       flex: 20,
       flexDirection: "row",
-      backgroundColor: "#62EFFF",
+      backgroundColor: "#62EFFF", //////////////comparten color de fondo
     },
     separator: {
       flex: 1,
@@ -55,6 +57,7 @@ export const mySuperTheme = extendTheme({
   },
 
   AddToListModal: {
+    backgroundColor: "#62EFFF", //////////////comparten color de fondo
     flex: 2,
     justifyContent: "center",
   },

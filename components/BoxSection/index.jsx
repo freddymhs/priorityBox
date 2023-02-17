@@ -11,18 +11,21 @@ import {
 
 export const BoxSection = ({ mainLists }) => {
   const screenWidth = Dimensions.get("window").width;
+  // items
   const styles = StyleSheet.create({
     itemContainer: {
-      backgroundColor: "#e0e0e0",
-      padding: 4,
-      margin: 5,
-      borderRadius: 20,
+
+      margin: 2,
+      borderWidth: 0.9,
+      borderRadius: 8,
+      padding: 7,
     },
     itemText: {
-      fontSize: 10,
-      color: "black",
+      fontSize: 14,
+      fontWeight: "bold",
       textAlign: "center",
-      width: screenWidth / 6,
+      minWidth: screenWidth / 3,
+
     },
   });
   const keysInList = mainLists && Object.keys(mainLists);
@@ -65,7 +68,7 @@ export const BoxSection = ({ mainLists }) => {
         style={{
           flex: 1,
           flexDirection: "column",
-          borderRightWidth: 1,
+          borderRightWidth: 0.3, /// alto
         }}
       >
         <View
@@ -74,14 +77,20 @@ export const BoxSection = ({ mainLists }) => {
             alignItems: "center",
 
             borderRadius: 8,
-            borderBottomWidth: 1,
+            // borderBottomWidth: 1, // title
+
           }}
         >
-          <Text>DESEO</Text>
+          <Text
+            style={{
+
+              fontWeight: '600'
+            }}
+          >DESEO</Text>
         </View>
         <View
           style={{
-            borderBottomWidth: 1,
+            borderBottomWidth: 0.5, // ancho
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
@@ -149,15 +158,20 @@ export const BoxSection = ({ mainLists }) => {
             alignItems: "center",
 
             borderRadius: 8,
-            borderBottomWidth: 1,
+            // borderBottomWidth: 1, //title
           }}
         >
-          <Text>NECESIDAD</Text>
+          <Text
+            style={{
+
+              fontWeight: '600'
+            }}
+          >NECESIDAD</Text>
         </View>
 
         <View
           style={{
-            borderBottomWidth: 1,
+            borderBottomWidth: 0.5, // ancho
             flex: 1,
             alignItems: "center",
             justifyContent: "center",

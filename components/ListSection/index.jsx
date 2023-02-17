@@ -76,13 +76,14 @@ export default ListSection = () => {
   return (
     <>
 
-      <View style={{ flex: 9 }}>
+      <View style={{ flex: 9, backgroundColor: '#62EFFF' }}>
         <ListOfLists mainLists={mainLists} handleDelete={handleDelete} />
       </View>
 
       <View style={{
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
+        , backgroundColor: '#62EFFF'
       }}>
 
         <AddList mainLists={mainLists} setMainLists={setMainLists} />

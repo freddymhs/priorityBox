@@ -4,30 +4,35 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeSection from "../HomeSection/index";
 import ListSection from "../ListSection/index";
 import { Center, Text } from "native-base";
-
+import { NavigationContainer } from "@react-navigation/native";
 function NotificationsScreen({ navigation }) {
   return (
     <>
-      <Center style={{ flex: 1, margin: 67 }}>
-        <Text>Idea para esta pantalla:</Text>
-        <Text>
-          puede dejar un registro de interacciones si esta app se usa de forma
-          grupal
-        </Text>
-      </Center>
+      <Center style={{ flex: 1, backgroundColor: "#62EFFF" }}>
+        <Center style={{ flex: 1, margin: 67 }}>
+          <Text>Idea para esta pantalla:</Text>
+          <Text>
+            esto podria ser una pantalla de registro de interacciones o acciones
+            en uso grupal
+          </Text>
+        </Center>
 
-      <Center style={{ flex: 1 }}>
-        <Button onPress={() => navigation.goBack()} title="REGRESAR AL HOME" />
-      </Center>
+        <Center style={{ flex: 1 }}>
+          <Button
+            onPress={() => navigation.goBack()}
+            title="REGRESAR AL ORGANIZADOR"
+          />
+        </Center>
 
-      <Center style={{ flex: 1 }}>
-        <Text
-          onPress={() => {
-            Linking.openURL("https://github.com/freddymhs");
-          }}
-        >
-          mas proyectos personales presinando aca !
-        </Text>
+        <Center style={{ flex: 1 }}>
+          <Text
+            onPress={() => {
+              Linking.openURL("https://github.com/freddymhs");
+            }}
+          >
+            mas proyectos personales presinando aca !
+          </Text>
+        </Center>
       </Center>
     </>
   );
@@ -59,7 +64,14 @@ const Drawer = createDrawerNavigator();
 export function NavMenu() {
   return (
     <>
-      <Drawer.Navigator initialRouteName="ORGANIZADOR">
+      <Drawer.Navigator
+        initialRouteName="ORGANIZADOR"
+        screenOptions={{
+          drawerStyle: {
+            backgroundColor: "#52B1BC",
+          },
+        }}
+      >
         <Drawer.Screen
           name="ORGANIZADOR"
           component={HomeSection}

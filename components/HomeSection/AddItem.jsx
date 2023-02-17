@@ -130,22 +130,9 @@ export const AddItem = () => {
               onValueChange={(itemValue) =>
                 onChangeText((prev) => ({ ...prev, type: itemValue }))
               }
-              // _focus={{ borderColor: 'yellow.500' }}
-              // borderColor="red.500"
-              // selectedValue={service}
-              // minWidth="200"
-              // accessibilityLabel="Choose Service"
-              // placeholder="Choose Service"
-              // _selectedItem={{
-              //   bg: 'teal.600',
-              //   endIcon: <CheckIcon size="5" />,
-              // }}
-              mt={1}
 
-            // _selectedItem={{
-            //   bg: "cyan.600",
-            //   endIcon: <CheckIcon size={4} />,
-            // }}
+
+
             >
               <Select.Item label="necesidad" value="necesidad" />
               <Select.Item label="deseo" value="deseo" />

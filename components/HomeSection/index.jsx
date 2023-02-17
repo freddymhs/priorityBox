@@ -45,7 +45,7 @@ export default function HomeSection() {
     <View style={fullScreen}>
 
       <BoxSection mainLists={mainLists} />
-      <View style={separator}></View>
+      {/* <View style={separator}></View> */}
       <AddItem />
 
     </View>
