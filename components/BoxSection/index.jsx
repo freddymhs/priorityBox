@@ -1,5 +1,5 @@
 
-import { SectionList } from "native-base";
+import { SectionList, useTheme } from "native-base";
 import { useState } from "react";
 
 import {
@@ -58,8 +58,12 @@ export const BoxSection = ({ mainLists }) => {
     [[], [], [], []]
   );
 
+
+  const { components: { boxArea } } = useTheme()
   return (
-    <View style={{ flex: 6, flexDirection: 'row' }}>
+    <View
+      style={boxArea}
+    >
 
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>

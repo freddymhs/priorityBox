@@ -12,65 +12,17 @@ import { db } from "../../init-firebase";
 
 import { BoxSection } from "../BoxSection/index";
 import { AddItem } from "./AddItem";
+import { Content, Container, useTheme } from "native-base";
 
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: "500",
-  },
-  mainView: {
-    backgroundColor: "#fff",
-    flex: 1,
-  },
-  //
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    padding: 5,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
+const refRealTimeDatabase = ref(db, "/listas");
 
 export default function HomeSection() {
+  const {
+    components: { fullScreen, separator }
+  } = useTheme();
+
+  const [mainLists, setMainLists] = useState({});
+
   useEffect(() => {
     function getDataFromFirebase() {
       try {
@@ -85,19 +37,23 @@ export default function HomeSection() {
 
     getDataFromFirebase();
   }, []);
-  const refRealTimeDatabase = ref(db, "/listas");
-  //
-  //
-  //
-  function setDataInFirebase() {
-    set(ref(db, "/listas"), list);
-  }
-  //
-  const [mainLists, setMainLists] = useState({});
+
+
+
 
   return (
-    <View style={styles.mainView}>
+    <View style={fullScreen}>
+
       <BoxSection mainLists={mainLists} />
+      <View style={separator}></View>
       <AddItem />
-    </View>);
+
+    </View>
+
+  )
+  // return (
+  //   <View style={styles.mainView}>
+  //     <BoxSection mainLists={mainLists} />
+  //     <AddItem />
+  //   </View>);
 }

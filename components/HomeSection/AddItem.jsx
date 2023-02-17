@@ -1,9 +1,29 @@
-import { onValue, ref, set } from 'firebase/database';
-import { Box, Button, Center, CheckIcon, CloseIcon, HStack, IconButton, Input, Modal, Select, VStack } from 'native-base';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Pressable, View, TextInput, Alert } from 'react-native';
-import { db } from '../../init-firebase';
-import { useToast } from 'native-base';
+import { onValue, ref, set } from "firebase/database";
+import {
+  Box,
+  Button,
+  Center,
+  CheckIcon,
+  CloseIcon,
+  HStack,
+  IconButton,
+  Input,
+  Modal,
+  Select,
+  useTheme,
+  VStack,
+} from "native-base";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  Text,
+  Pressable,
+  View,
+  TextInput,
+  Alert,
+} from "react-native";
+import { db } from "../../init-firebase";
+import { useToast } from "native-base";
 export const AddItem = () => {
   const { CloseButton, Content, Body, Header, Footer } = Modal;
   const { Group } = Button;
@@ -15,14 +35,16 @@ export const AddItem = () => {
   const [text, onChangeText] = useState({
     name: "",
     priority: "bajo",
-    type: "deseo"
+    type: "deseo",
   });
   const toast = useToast();
-
+  const { AddToListModal,
+    components: { simpleButton },
+    modalBtnText, modalBtn, modal, modalBody, modalHeader, modalFooter, modalContent } = useTheme();
 
   const addItemInList = () => {
     if (selectedList === null || text?.name.length < 1) {
-      Alert.alert('No es valido un campo vacio',);
+      Alert.alert("No es valido un campo vacio");
       return;
     }
 
@@ -30,17 +52,16 @@ export const AddItem = () => {
     set(ref(db, `/listas/${selectedList}/items/${newPosition}`), text);
     toast.show({
       description: "TAREA AGREGADA",
-      placement: "top"
-    })
+      placement: "top",
+    });
 
     setSelectedList(null);
     onChangeText({
       name: "",
       priority: "bajo",
-      type: "deseo"
+      type: "deseo",
     });
-
-  }
+  };
   const [listNames, setListNames] = React.useState([]);
 
   useEffect(() => {
@@ -51,9 +72,8 @@ export const AddItem = () => {
           const data = snapshot.val();
           if (data) {
             setMainLists(data);
-            setListNames(Object.keys(data))
+            setListNames(Object.keys(data));
           }
-
         });
       } catch (err) {
         console.log("no pude obtener la data desde firebase realtime");
@@ -63,143 +83,123 @@ export const AddItem = () => {
   }, []);
 
   return (
-    <View style={styles.centeredView}>
-
+    <View style={AddToListModal}>
       <Modal
+        style={modal}
         animationType="slide"
         transparent={true}
         isOpen={modalVisible}
         onClose={() => {
           setModalVisible(!modalVisible);
-        }}>
-        <Content maxWidth="350">
+        }}
+      >
+        <Content style={modalContent}>
           <CloseButton />
-          <Header>Ingrese nuevo Item</Header>
-
-          <Body>
-
-
-            <Select
-
-              selectedValue={selectedList}
-              onValueChange={itemValue => (setSelectedList(itemValue))}
-              placeholder="A que lista agregar este item?"
-              _selectedItem={{
-                bg: "cyan.600",
-                endIcon: <CheckIcon size={4} />
-              }}>
-              {
-                listNames?.map((name, i) => {
-                  return <Item label={name} value={name} key={i} />
-                })
-              }
-            </Select>
+          <Header style={modalHeader}>Nuevo Item</Header>
+          <Body style={modalBody}>
 
             <Input
+              placeholderTextColor="#34656A"
               onChangeText={(e) => {
                 onChangeText((prev) => {
                   return { ...prev, name: e };
                 });
               }}
               value={text.name}
-              w="100%" placeholder="Asigne un nombre" _light={{
-                placeholderTextColor: "blueGray.400"
-              }} _dark={{
-                placeholderTextColor: "blueGray.50"
-              }} />
+              placeholder="Asigne un nombre"
+            />
+            <Select
+              placeholderTextColor="#34656A"
+              selectedValue={selectedList}
+              onValueChange={(itemValue) => setSelectedList(itemValue)}
+              placeholder="A que lista agregar este item?"
+              _selectedItem={{ bg: "cyan.600" }}
+            >
+              {listNames?.map((name, i) => {
+                return <Item label={name} value={name} key={i} />;
+              })}
+            </Select>
 
-            <Select selectedValue={text.type} minWidth={200} placeholder="Deseo o prioridad?"
-              onValueChange={itemValue => onChangeText((prev) => ({ ...prev, type: itemValue }))}
-              _selectedItem={{
-                bg: "cyan.600",
-                endIcon: <CheckIcon size={4} />
-              }}>
+
+
+            <Select
+              style={modalBody.select}
+              selectedValue={text.type}
+              minWidth={200}
+              placeholder="Deseo o prioridad?"
+              onValueChange={(itemValue) =>
+                onChangeText((prev) => ({ ...prev, type: itemValue }))
+              }
+              // _focus={{ borderColor: 'yellow.500' }}
+              // borderColor="red.500"
+              // selectedValue={service}
+              // minWidth="200"
+              // accessibilityLabel="Choose Service"
+              // placeholder="Choose Service"
+              // _selectedItem={{
+              //   bg: 'teal.600',
+              //   endIcon: <CheckIcon size="5" />,
+              // }}
+              mt={1}
+
+            // _selectedItem={{
+            //   bg: "cyan.600",
+            //   endIcon: <CheckIcon size={4} />,
+            // }}
+            >
               <Select.Item label="necesidad" value="necesidad" />
               <Select.Item label="deseo" value="deseo" />
             </Select>
-            <Select selectedValue={text.priority} minWidth={200} placeholder="Nivel de relevancia "
-              onValueChange={itemValue => onChangeText((prev) => ({ ...prev, priority: itemValue }))}
+            <Select
+
+              selectedValue={text.priority}
+              minWidth={200}
+              placeholder="Nivel de relevancia "
+              onValueChange={(itemValue) =>
+                onChangeText((prev) => ({ ...prev, priority: itemValue }))
+              }
               _selectedItem={{
                 bg: "cyan.600",
-                endIcon: <CheckIcon size={4} />
-              }}>
+                endIcon: <CheckIcon size={4} />,
+              }}
+            >
               <Select.Item label="Muy Importante" value="alto" />
               <Select.Item label="Poco Importante" value="bajo" />
             </Select>
           </Body>
-          <Footer>
+          <Footer style={modalFooter}>
             <Group space={2}>
-              <Button variant="ghost" colorScheme="blueGray" onPress={() => {
-                setModalVisible(false);
-              }}>
-                Cancel
+              <Button
+                style={modalBtn}
+                onPress={() => {
+                  setModalVisible(false);
+                }}
+              >
+                <Text style={modalBtnText}>
+                  Cancelar
+                </Text>
+
               </Button>
-              <Button onPress={() => {
-                addItemInList();
-                setModalVisible(false);
-              }}>
-                Save
+              <Button
+                style={modalBtn}
+                onPress={() => {
+                  addItemInList();
+                  setModalVisible(false);
+                }}
+              >
+                <Text style={modalBtnText}>
+                  Guardar
+                </Text>
+
               </Button>
             </Group>
           </Footer>
         </Content>
+      </Modal>
 
-      </Modal >
-
-
-      <Box Box alignItems="center" >
-        <Button onPress={() => setModalVisible(true)}>Agregar a la lista</Button></Box >
+      <Button style={simpleButton.btn} onPress={() => setModalVisible(true)}>
+        <Text style={simpleButton.btn.text}> Agregar a la lista</Text>
+      </Button>
     </View >
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});
-
