@@ -43,7 +43,8 @@ export const AddItem = () => {
     modalBtnText, modalBtn, modal, modalBody, modalHeader, modalFooter, modalContent } = useTheme();
 
   const addItemInList = () => {
-    if (selectedList === null || text?.name.length < 1) {
+    if (selectedList === null || text?.name?.length < 1 || text?.name === null) {
+
       Alert.alert("No es valido un campo vacio");
       return;
     }
@@ -55,11 +56,15 @@ export const AddItem = () => {
       placement: "top",
     });
 
-    setSelectedList(null);
-    onChangeText({
-      name: "",
-      priority: "bajo",
-      type: "deseo",
+    // setSelectedList(null); // no cambia el valor en el select
+
+    onChangeText((prev) => {
+      return {
+        ...prev,
+        name: null,
+        // priority: "bajo",
+        // type: "deseo",
+      }
     });
   };
   const [listNames, setListNames] = React.useState([]);
@@ -111,9 +116,11 @@ export const AddItem = () => {
             <Select
               placeholderTextColor="#34656A"
               selectedValue={selectedList}
+              defaultValue={selectedList}
               onValueChange={(itemValue) => setSelectedList(itemValue)}
               placeholder="A que lista agregar este item?"
               _selectedItem={{ bg: "cyan.600" }}
+
             >
               {listNames?.map((name, i) => {
                 return <Item label={name} value={name} key={i} />;

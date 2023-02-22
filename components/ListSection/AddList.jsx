@@ -16,13 +16,18 @@ export const AddList = ({ mainLists, setMainLists }) => {
 
   const { CloseButton, Content, Body, Header, Footer } = Modal;
   const { Group } = Button;
-  const { Item } = Select;
 
   const [titleOfList, setTitleOfList] = useState("");
   const [descriptionOfList, setDescriptionOfList] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const createNewList = () => {
 
+
+
+    if (mainLists[titleOfList]) {
+      Alert.alert('esta lista ya existe',)
+      return;
+    }
     if (titleOfList.length < 1 || descriptionOfList.length < 1) {
       Alert.alert('No es valido un campo vacio',)
       return;
