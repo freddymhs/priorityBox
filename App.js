@@ -22,6 +22,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* para que funcione el theme */}
+      {/* comentar el theme y descomentarlo arregla el bugde iniciarlo en emulador D: */}
       <NativeBaseProvider theme={mySuperTheme}>
         {/* contenido de la app */}
         <MainContent />
