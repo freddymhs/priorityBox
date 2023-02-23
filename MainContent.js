@@ -37,18 +37,23 @@ export default function MainContent() {
 
   const {
     safeAreaViewContainer,
-    config: { initialColorStatusBar },
+    config: { initialColorStatusBarIphone, initialColorStatusBarAndroid },
   } = useTheme();
 
   return (
     // el safe area permite que la app se vea bien en los dispositivos
     <SafeAreaView style={safeAreaViewContainer}>
+      <StatusBar
+        barStyle={initialColorStatusBarIphone}
+        backgroundColor={initialColorStatusBarAndroid}
+      />
       {/* // status bar permite que la barra de estado se vea bien en los */}
       <StatusBar
         barStyle={"Products" !== "Products" ? "light-content" : "dark-content"}
       />
       {/* // aqui se reenderiza la primera pantalla */}
       <NavMenu />
+      {/* <NavigationBar /> */}
     </SafeAreaView>
   );
 }

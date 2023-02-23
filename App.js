@@ -9,7 +9,7 @@ import {
 } from "native-base";
 import { mySuperTheme } from "./theme/index";
 import { StatusBar } from "native-base";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import MainContent from "./MainContent";
 const styles = StyleSheet.create({
@@ -20,13 +20,20 @@ const styles = StyleSheet.create({
 
 export default function App() {
   return (
-    // para que funcione el navigation
     <NavigationContainer>
-      {/* para que funcione el theme  */}
+      {/* para que funcione el theme */}
       <NativeBaseProvider theme={mySuperTheme}>
         {/* contenido de la app */}
         <MainContent />
       </NativeBaseProvider>
     </NavigationContainer>
+    // // para que funcione el navigation
+    // <NavigationContainer>
+    //   para que funcione el theme
+    //   <NativeBaseProvider theme={mySuperTheme}>
+    //     {/* contenido de la app */}
+    //      <MainContent />
+    //   </NativeBaseProvider>
+    // / </NavigationContainer>
   );
 }

@@ -9,8 +9,8 @@ export const mySuperTheme = extendTheme({
   },
   // cosas fuear de la app
   config: {
-    // initialColorStatusBar: "dark-content",
-    initialColorStatusBar: "cyan",
+    initialColorStatusBarIphone: "dark-content",
+    initialColorStatusBarAndroid: "#62EFFF",
   },
   // componentes de la app
 

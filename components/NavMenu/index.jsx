@@ -33,7 +33,20 @@ function NotificationsScreen({ navigation }) {
             mas proyectos personales presinando aca !
           </Text>
         </Center>
+
+        <Center style={{ flex: 1 }}>
+          <Text
+
+          >
+            aplicacion basada en la matriz de Eisenhower.
+          </Text>
+        </Center>
+
       </Center>
+
+
+
+
     </>
   );
 }
